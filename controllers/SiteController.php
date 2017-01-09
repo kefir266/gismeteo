@@ -61,8 +61,14 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $meteostations = Meteostation::findAll();
+        $meteostations = Meteostation::find()->all();
         return $this->render('index',['meteostations' => $meteostations]);
+    }
+
+    public function actionView($id)
+    {
+        $meteostation = Meteostation::findOne($id);
+        return$this->render('view',['meteostation' => $meteostation]);
     }
 
     /**
