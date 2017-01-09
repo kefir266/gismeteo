@@ -47,7 +47,7 @@ class Meteostation extends \yii\db\ActiveRecord implements IMeteostation
         return [
             'id' => 'ID',
             'name' => 'Name',
-            'location_id' => 'Location ID',
+            'location_id' => 'Location',
         ];
     }
 

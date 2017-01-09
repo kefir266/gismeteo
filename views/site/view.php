@@ -27,6 +27,6 @@
 
             <?php endforeach; ?>
         </table>
-        <?= \yii\bootstrap\Html::a('Добавить датчик', ['/sensor/create'], ['class' => 'btn btn-primary']) ?>
+        <?= \yii\bootstrap\Html::a('Add sensor', ['/sensor/create'], ['class' => 'btn btn-primary']) ?>
     </div>
 </div>

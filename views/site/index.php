@@ -2,6 +2,8 @@
 
 /* @var $this yii\web\View */
 
+use yii\helpers\Url;
+
 $this->title = 'Weather';
 ?>
 <div class="site-index">
@@ -15,7 +17,7 @@ $this->title = 'Weather';
 
     <?php foreach ($meteostations as $meteostation) : ?>
 
-        <a href="/site/view?id=<?= $meteostation->id ?>">
+        <a href="<?= Url::to(['/site/view','id' => $meteostation->id]) ?>">
             <div class="col-md-4 ">
                 <div class="row">
                     <p><b><?= $meteostation->name ?></b></p>
