@@ -27,8 +27,18 @@ class StationsController extends Controller
         $meteostations = Meteostation::find()->each();
 
         foreach ($meteostations as $meteostation) {
+
             $station = $this->ansiFormat($meteostation->name.' \n', Console::BG_GREEN);
-            $this->stdout( $meteostation->name.' \n', Console::BG_GREEN) ;
+            $this->stdout( $station.' \n', Console::BG_GREEN);
+
+            $location =  $this->ansiFormat($meteostation->location->address.' \n', Console::BG_GREEN);
+            echo $location;
+            foreach($meteostation->getSensors()->each() as $sensor) {
+                if (isset($sensor->temperature)) {
+                    $temperature = $this->ansiFormat($sensor->temperature.' \n', Console::FG_BLUE);
+                    echo $temperature;
+                }
+            }
             $exitStatus = Controller::EXIT_CODE_NORMAL;
         }
         return $exitStatus;
@@ -38,6 +48,17 @@ class StationsController extends Controller
     {
         $meteostation = Meteostation::findOne($id);
         $this->stdout( $meteostation->name);
+        $station = $this->ansiFormat($meteostation->name.' \n', Console::BG_GREEN);
+        $this->stdout( $station.' \n', Console::BG_GREEN);
+
+        $location =  $this->ansiFormat($meteostation->location->address.' \n', Console::BG_GREEN);
+        echo $location;
+        foreach($meteostation->getSensors()->each() as $sensor) {
+            if (isset($sensor->temperature)) {
+                $temperature = $this->ansiFormat($sensor->temperature.' \n', Console::FG_BLUE);
+                echo $temperature;
+            }
+        }
         return Controller::EXIT_CODE_NORMAL;
     }
 

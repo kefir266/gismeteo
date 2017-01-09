@@ -57,4 +57,25 @@ class Sensor extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Meteostation::className(), ['id' => 'meteostation_id']);
     }
+
+    public function getTemperature()
+    {
+        if ($this->type == 'openweather') {
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $this->uri);
+            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
+            curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            $data = curl_exec($ch);
+            $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+            curl_close($ch);
+
+            if ($httpcode == 200) {
+                return preg_replace('/(double\()(.+)(\))/i','$2',json_decode($data)->main->temp );
+            }
+        } elseif ($this->type == 'temperature') {
+            //Получаем от датчика температуру
+        }
+        return null;
+    }
 }

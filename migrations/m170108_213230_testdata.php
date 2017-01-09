@@ -9,11 +9,17 @@ class m170108_213230_testdata extends Migration
 
         $this->insert('location',[
             'id' => '1',
-            'name' => 'kyiv'
+            'name' => 'kyiv',
+            'address' => 'Khreshatyk str.',
+            'longitude' => '50.447926',
+            'latitude' => '30.522181'
         ]);
         $this->insert('location', [
             'id' => '2',
-            'name' => 'donetsk'
+            'name' => 'donetsk',
+            'address' => 'Artema str.',
+            'longitude' => '37.804266',
+            'latitude' => '48.007915'
         ]);
 
         $this->insert('meteostation',[
