@@ -29,7 +29,10 @@ $this->title = 'Weather';
                     <tr>
                         <?php if (isset($sensor->temperature)): ?>
                             <td class="col-md-1">Температура</td>
-                            <td class="col-md-1"> <?= $sensor->temperature ?></td>
+                            <td class="col-md-1"> <?= $sensor->temperature ?> C°</td>
+                        <?php else: ?>
+                            <td class="col-md-1">Температура</td>
+                            <td class="col-md-1"> N/A</td>
                         <?php endif; ?>
                     <tr>
                         <?php endforeach; ?>

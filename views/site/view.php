@@ -12,14 +12,21 @@
                 <tr><th colspan="2">Сенсоры</th></tr>
             </thead>
             <?php foreach ($meteostation->getSensors()->each() as $sensor): ?>
-            <tr>
-                <?php if (isset($sensor->temperature)): ?>
-                <a href="sensor/view?id=<?= $sensor->id?>"> <td class="col-md-1">Температура</td>
-                <td class="col-md-1"> <?= $sensor->temperature ?></td>
-                </a>
-                <?php endif; ?>
-            <tr>
-                <?php endforeach; ?>
+
+                    <tr>
+                        <?php if (isset($sensor->temperature)): ?>
+                            <td class="col-md-1">Температура</td>
+                            <td class="col-md-1">
+                                <a href="/sensor/view?id=<?= $sensor->id ?>"><?= $sensor->temperature ?> C°</a>
+                            </td>
+                        <?php else: ?>
+                            <td class="col-md-1">Температура</td>
+                            <td class="col-md-1"> N/A</td>
+                        <?php endif; ?>
+                    <tr>
+
+            <?php endforeach; ?>
         </table>
+        <?= \yii\bootstrap\Html::a('Добавить датчик', ['/sensor/create'], ['class' => 'btn btn-primary']) ?>
     </div>
 </div>

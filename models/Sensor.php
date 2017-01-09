@@ -71,7 +71,7 @@ class Sensor extends \yii\db\ActiveRecord
             curl_close($ch);
 
             if ($httpcode == 200) {
-                return preg_replace('/(double\()(.+)(\))/i','$2',json_decode($data)->main->temp );
+                return round(preg_replace('/(double\()(.+)(\))/i','$2',json_decode($data)->main->temp ) - 273.15);
             }
         } elseif ($this->type == 'temperature') {
             //Получаем от датчика температуру
