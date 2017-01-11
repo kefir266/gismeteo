@@ -41,7 +41,7 @@ class LoginFormTest extends \Codeception\Test\Unit
     {
         $this->model = new LoginForm([
             'username' => 'demo',
-            'password' => 'demo',
+            'password' => 'meteo',
         ]);
 
         expect_that($this->model->login());
